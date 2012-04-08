@@ -19,3 +19,5 @@ With [g8](https://github.com/n8han/giter8) installed, you can generate a fresh p
 
 The generated project has a readme that describes the next steps to try. Time to get graphy!
 
+For full details, check out [the guide](http://akollegger.github.com/unfiltered-neo4j-on-heroku.g8/).
+
