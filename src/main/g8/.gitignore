@@ -1,0 +1,8 @@
+/target
+/project/target
+/project/boot
+/project/plugins/target
+/project/plugins/project
+.idea/
+.idea_modules/
+neo4j_home/
