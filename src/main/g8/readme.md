@@ -60,6 +60,7 @@ Then use dispatch to work with the Neo4j graph...
     h((node << ("{\"foo\" : \"bar\"}", "application/json")) >>> System.out)
 
     // query with Cypher
+    val cypher = g / "cypher"
     h((cypher << ("""{"query": "start n=node(0) return n"}""", "application/json")) >>> System.out)
 
 Become a Hero(ku)
