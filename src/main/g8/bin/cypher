@@ -1,0 +1,39 @@
+#!/bin/sh
+
+CYPHER_HISTORY="${HOME}/.cypher_history"
+history -r ${CYPHER_HISTORY}
+
+#REST_URL=http://bansky-server.herokuapp.com/
+REST_URL=http://localhost:8080/
+#REST_URL=http://localhost:7474/db/data/cypher
+CYPHER_URL=${REST_URL}cypher
+ACCEPT_TYPE="application/json"
+CURL_OPTS="--fail --silent"
+
+CYPHER_PROMPT='--> '
+
+cypher() {
+  cql="$1"
+  curl ${CURL_OPTS} --data "${cql}" ${CYPHER_URL} 
+  if [ ! $? ]; then echo "Failed"; exit 1; fi
+}
+
+if [ "$1" != "" ]; then
+  CURL_OPTS="${CURL_OPTS} --header Accept:text/plain"
+  cypher "$1"
+elif [[ -t 0 ]]; then
+  CURL_OPTS="${CURL_OPTS} --header Accept:text/plain"
+  while read -e -p "$CYPHER_PROMPT" line; do
+    history -s "$line"
+    cypher "$line"
+    echo ""
+  done
+  history -w ${CYPHER_HISTORY}
+  exit 0
+else
+  CURL_OPTS="${CURL_OPTS} --header Accept:application/json"
+  while read line; do
+    cypher "$line"
+  done
+  exit 0
+fi

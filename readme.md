@@ -21,3 +21,8 @@ The generated project has a readme that describes the next steps to try. Time to
 
 For full details, check out [the guide](http://akollegger.github.com/unfiltered-neo4j-on-heroku.g8/).
 
+
+Build-and-test
+--------------
+
+`sbt clean g8-test`
